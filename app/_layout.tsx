@@ -1,33 +1,25 @@
-import { StyleSheet, Text, useColorScheme, View } from 'react-native'
-import React from 'react'
-import { Stack } from 'expo-router'
-import { Colors} from "../constants/Colors"
+import { Stack } from "expo-router"
+import { Colors } from "../constants/Colors"
+import { useColorScheme } from "react-native"
+import { StatusBar } from "expo-status-bar"
 
-const RootLayout = () => {
+export default function RootLayout() {
   const colorScheme = useColorScheme()
-  const theme = Colors[colorScheme ?? 'light']
+  const theme = Colors[colorScheme] ?? Colors.light
+
   return (
-    <View style={styles.container}>
-      <Stack screenOptions={
-        {
-          headerStyle: { backgroundColor: theme.navBackground },
-          headerTitleStyle: { color: theme.title },
-          headerTintColor: theme.iconColor,
-          headerTitleAlign: 'center'
-        }
-      }>
-        <Stack.Screen name="index" options={{ headerShown: true, title: "home"}}/>
-        <Stack.Screen name="about" options={{ title: "About Us" }}/>
-        <Stack.Screen name="contact" options={{ title: "Contact Us", headerShown: true }}/>
+    <>
+      <StatusBar style="auto" />
+      <Stack screenOptions={{
+        headerStyle: { backgroundColor: theme.navBackground },
+        headerTintColor: theme.title,
+      }}>
+        {/* Groups */}
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+
+        {/* Individual Screens */}
+        <Stack.Screen name="index" options={{ title: "Home" }} />
       </Stack>
-    </View>
+    </>
   )
 }
-
-export default RootLayout
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-})

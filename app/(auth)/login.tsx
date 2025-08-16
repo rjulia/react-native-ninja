@@ -1,11 +1,13 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import { Link } from 'expo-router'
 
-import { ThemedView, Spacer, ThemedText } from '@/components'
+import { ThemedView, Spacer, ThemedText, ThemedButton } from '@/components'
 import generalStyle from '@/styles/style'
-import ThemedButton from '@/components/ThemedButton'
 
 const Login = () => {
+  const handleSubmit = () => {
+    console.log("Login submitted");
+  };
   return (
     <ThemedView style={generalStyle.container}>
 
@@ -13,8 +15,8 @@ const Login = () => {
       <ThemedText title={true} style={styles.title}>
         Login to Your Account
       </ThemedText>
-      <ThemedButton onPress={() => {console.log("Login pressed")}}>
-        <ThemedText>Login</ThemedText>
+      <ThemedButton onPress={handleSubmit}>
+        <Text style={styles.textBtn}>LOGIN</Text>
       </ThemedButton>
       <Spacer height={100} />
       <Link href="/register" replace>
@@ -35,4 +37,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 30
   },
+  textBtn: {
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "white"
+  }
 })

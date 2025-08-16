@@ -1,9 +1,9 @@
 import { Colors } from "@/constants/Colors";
 import { Pressable, StyleSheet } from "react-native";
 
-const ThemedButton = ({ children, onPress, ...props }) => {
+const ThemedButton = ({...props }) => {
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+    <Pressable style={({ pressed }) => [styles.button, pressed && styles.pressed]}
     {...props}
     />
   );
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginVertical: 10,
     backgroundColor: Colors.primary,
+    minWidth: 120,
   },
   pressed: {
     opacity: 0.7,
